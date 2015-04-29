@@ -1,7 +1,7 @@
 
 var rng;
-
-if (global.crypto && crypto.getRandomValues) {
+var globalVar = window !== undefined ? window : global;
+if (globalVar.crypto && crypto.getRandomValues) {
   // WHATWG crypto-based RNG - http://wiki.whatwg.org/wiki/Crypto
   // Moderately fast, high quality
   var _rnds8 = new Uint8Array(16);
