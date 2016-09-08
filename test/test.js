@@ -103,3 +103,13 @@ test('parse/unparse', function() {
     '00112233-4455-6677-8899-aabbccddeeff', 'Dirty parse');
 });
 
+test('valid', function() {
+  var illegalChars = 'thisisnotavalidid';
+  var short = '00112233-4455-6677-8899-aabbccddeef';
+  var separators = '00112233445566778899aabbccddeef';
+  assert(uuid.valid(uuid.v1()), 'generated id v1 is valid');
+  assert(uuid.valid(uuid.v4()), 'generated id v4 is valid');
+  assert(uuid.valid(illegalChars) === false, 'illegal chars are invalid');
+  assert(uuid.valid(short) === false, 'too short is invalid');
+  assert(uuid.valid(separators) === false, 'missing separators is invalid');
+})

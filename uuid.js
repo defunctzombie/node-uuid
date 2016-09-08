@@ -16,6 +16,11 @@ for (var i = 0; i < 256; i++) {
   _hexToByte[_byteToHex[i]] = i;
 }
 
+// **`valid()` - Check if a UUID has valid format (RFC)**
+function valid(s) {
+  return /[a-f,A-F,0-9]{8}-([a-f,A-F,0-9]{4}-){3}[a-f,A-F,0-9]{12}/.test(s);
+}
+
 // **`parse()` - Parse a UUID into it's component bytes**
 function parse(s, buf, offset) {
   var i = (buf && offset) || 0, ii = 0;
@@ -179,5 +184,6 @@ uuid.v1 = v1;
 uuid.v4 = v4;
 uuid.parse = parse;
 uuid.unparse = unparse;
+uuid.valid = valid;
 
 module.exports = uuid;
